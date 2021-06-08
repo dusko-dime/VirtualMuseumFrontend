@@ -1,3 +1,9 @@
 {
-
+  "app": {
+    "title": "Virtuelni muzej"
+  },
+  "header": {
+    "login": "Prijavi se",
+    "register": "Registruj se"
+  }
 }
