@@ -13,6 +13,9 @@ const defaultActions = {
   login: () => {},
   logout: () => {},
   setLoggedIn: () => {},
+  setAccessToken: () => {},
+  setRefreshToken: () => {},
+  setLoggedUser: () => {}
 };
 
 export const AuthContext = React.createContext({
@@ -49,6 +52,9 @@ const AuthProvider = (props) => {
     refreshToken,
     loggedUser,
     setLoggedIn,
+    setAccessToken,
+    setRefreshToken,
+    setLoggedUser,
     login,
     logout,
   };

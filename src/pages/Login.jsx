@@ -6,9 +6,14 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import styled from "styled-components";
 import DTextField from "../components/TextField/DTextField";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
+import {login} from "../service/auth.service";
+import {useAuthStateValue} from "../context/AuthContext";
+import {useApplicationStateValue} from "../context/ApplicationContext";
 
 const Login = () => {
   const { t } = useTranslation();
+  const {setAccessToken, setRefreshToken, setLoggedUser, setLoggedIn} = useAuthStateValue();
+  const {setLoading} = useApplicationStateValue();
 
   const validationSchema = object().shape({
     username: string()
@@ -24,8 +29,28 @@ const Login = () => {
     mode: "onBlur",
   });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      const response = await login(data);
+      const { accessToken, refreshToken, user } = response.data;
+      console.log(accessToken, refreshToken, user);
+      if (accessToken) {
+        setLoading(true);
+        setAccessToken(accessToken);
+        setRefreshToken(refreshToken);
+        // window.location.href = "/";
+        setLoggedUser(user);
+        setLoggedIn(true);
+        sessionStorage.setItem("accessToken", accessToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        setTimeout(() => {
+          setLoading(false);
+        }, 100);
+      }
+      console.log(response);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -41,6 +66,7 @@ const Login = () => {
               label={t("login.username")}
               value={value}
               onChange={onChange}
+              required
               error={!!error}
               helperText={error ? error.message : null}
             />
@@ -56,6 +82,7 @@ const Login = () => {
               value={value}
               type="password"
               onChange={onChange}
+              required
               error={!!error}
               helperText={error ? error.message : null}
             />
