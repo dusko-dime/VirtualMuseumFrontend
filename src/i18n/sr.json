@@ -5,5 +5,29 @@
   "header": {
     "login": "Prijavi se",
     "register": "Registruj se"
+  },
+  "register": {
+    "headerTitle": "Registracija",
+    "firstName": "Ime",
+    "lastName": "Prezime",
+    "username": "Korisničko ime",
+    "password": "Lozinka",
+    "repeatPassword": "Ponovi lozinku",
+    "email": "Email",
+    "confirmButton": "Registruj se"
+  },
+  "login": {
+    "headerTitle": "Prijava",
+    "username": "Korisničko ime",
+    "password": "Lozinka",
+    "confirmButton": "Prijavi se"
+  },
+  "validation": {
+    "required": "{{fieldName}} je obavezno!",
+    "minLength": "Minimalan broj karaktera je {{length}}!",
+    "maxLength": "Maksimalan broj karaktera je {{length}}!",
+    "confirmPasswordInvalid": "Lozinka je nevalidna!",
+    "email": "Email adresa nije validna!",
+    "passwordPolicy": "Lozinka mora da sadrži bar jedno veliko slovo, malo slovo i broj!"
   }
 }

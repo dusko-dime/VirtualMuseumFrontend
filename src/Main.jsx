@@ -7,15 +7,16 @@ import Template from "./Template";
 
 const Main = () => {
     return (
-        <Template>
         <BrowserRouter>
-            <Switch>
-                <Route path="/login" component={Login}></Route>
-                <Route path="/register" component={Register}></Route>
-                <Route component={NotFound}/>
-            </Switch>
+            <Template>
+                <Switch>
+                    <Route path="/login" component={Login}></Route>
+                    <Route path="/register" component={Register}></Route>
+                    <Route component={NotFound}/>
+                </Switch>
+            </Template>
         </BrowserRouter>
-        </Template>
+
     )
 }
 

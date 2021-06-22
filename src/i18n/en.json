@@ -5,5 +5,29 @@
   "header": {
     "login": "Login",
     "register": "Register"
+  },
+  "register": {
+    "headerTitle": "Register",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "username": "Username",
+    "password": "Password",
+    "repeatPassword": "Repeat password",
+    "email": "Email",
+    "confirmButton": "Register"
+  },
+  "login": {
+    "headerTitle": "Login",
+    "username": "Username",
+    "password": "Password",
+    "confirmButton": "Log in"
+  },
+  "validation": {
+    "required": "{{fieldName}} is required!",
+    "minLength": "Minimal number of characters is {{length}}!",
+    "maxLength": "Maximal number of characters is {{length}}!",
+    "confirmPasswordInvalid": "Confirm password is invalid!",
+    "email": "Must be valid email address!",
+    "passwordPolicy": "Must be at least one uppercase, lowercase letter and number!"
   }
 }

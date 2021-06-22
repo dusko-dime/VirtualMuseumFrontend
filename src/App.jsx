@@ -7,6 +7,8 @@ import Main from "./Main";
 import { StylesProvider } from '@material-ui/core/styles';
 import {createMuiTheme, MuiThemeProvider} from "@material-ui/core";
 import initializeI18N from "./i18n/init";
+import StyledTheme from "./theme/theme";
+import breakpoints from "./theme/breakpoints";
 
 initializeI18N();
 
@@ -27,16 +29,23 @@ const App = () => {
                 contrastText: '#000',
             },
         },
+        mediaQueries: {
+            extraSmallScreen: `@media screen and (min-width: ${breakpoints.xs})`,
+            smallScreen: `@media screen and (min-width: ${breakpoints.xs})`,
+            mediumScreen: `@media screen and (min-width: ${breakpoints.md})`,
+            largeScreen: `@media screen and (min-width: ${breakpoints.lg})`,
+            extraLargeScreen: `@media screen and (min-width: ${breakpoints.xl})`,
+        },
     });
   return (
       <StylesProvider injectFirst>
           <ApplicationProvider>
             <AuthProvider>
-                <MuiThemeProvider theme={theme}>
-                  <ThemeProvider theme={theme}>
-                    <Main/>
-                  </ThemeProvider>
-                </MuiThemeProvider>
+                <ThemeProvider theme={theme}>
+                    {/*<MuiThemeProvider theme={theme}>*/}
+                        <Main/>
+                    {/*</MuiThemeProvider>*/}
+                </ThemeProvider>
             </AuthProvider>
           </ApplicationProvider>
       </StylesProvider>

@@ -1,13 +1,23 @@
 import React from "react";
-import {AppBar, Toolbar, Typography, IconButton, Button, Grid} from "@material-ui/core";
+import {AppBar, Typography, IconButton, Button, Grid} from "@material-ui/core";
 import {Menu} from "@material-ui/icons";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import {useTranslation} from "react-i18next";
+import { useHistory } from "react-router-dom";
 
 const Template = ({children}) => {
 
     const {t} = useTranslation();
+    const history = useHistory();
+
+    const openRegisterPage = () => {
+        history.push("/register");
+    }
+
+    const openLoginPage = () => {
+        history.push("/login");
+    }
 
     return (
         <div>
@@ -24,10 +34,10 @@ const Template = ({children}) => {
                         </Grid>
                         <Grid container xs={9} direction="row" alignItems="center" justify="flex-end" spacing={2}>
                             <Grid item>
-                                <RegisterButton>{t("header.register")}</RegisterButton>
+                                <RegisterButton onClick={openRegisterPage}>{t("header.register")}</RegisterButton>
                             </Grid>
                             <Grid item>
-                                <LoginButton>{t("header.login")}</LoginButton>
+                                <LoginButton onClick={openLoginPage}>{t("header.login")}</LoginButton>
                             </Grid>
                         </Grid>
                     </Grid>
