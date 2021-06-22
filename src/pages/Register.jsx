@@ -9,6 +9,7 @@ import { object, string, ref } from "yup";
 import * as yup from "yup";
 // eslint-disable-next-line no-undef
 require("yup-password")(yup);
+import {register} from "../service/auth.service";
 
 const Register = () => {
   const { t } = useTranslation();
@@ -18,18 +19,20 @@ const Register = () => {
     lastName: string().max(50, t("validation.maxLength", { length: 50 })),
     username: string()
       .required(t("validation.required", { fieldName: t("register.username") }))
-      .max(50, t("validation.maxLength", { length: 50 })),
+      .max(50, t("validation.maxLength", { length: 50 }))
+      .min(12, t("validation.minLength", { length: 12 })).matches(/^[^(@|#|//)]*$/, t("validation.specialCharacters")),
     email: string()
       .required(t("validation.required", { fieldName: t("register.email") }))
       .max(50, t("validation.maxLength", { length: 50 }))
       .email(t("validation.email")),
     password: string()
+      .required(
+          t("validation.required", { fieldName: t("register.password") })
+      )
+      .min(15, t("validation.minLength", {length: 15}))
       .minLowercase(1, t("validation.passwordPolicy"))
       .minUppercase(1, t("validation.passwordPolicy"))
-      .minNumbers(1, t("validation.passwordPolicy"))
-      .required(
-        t("validation.required", { fieldName: t("register.password") })
-      ),
+      .minNumbers(1, t("validation.passwordPolicy")),
     repeatPassword: string()
       .required(
         t("validation.required", { fieldName: t("register.repeatPassword") })
@@ -38,13 +41,19 @@ const Register = () => {
       .oneOf([ref("password"), null], t("validation.confirmPasswordInvalid")),
   });
 
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, formState } = useForm({
     resolver: yupResolver(validationSchema),
-    mode: "onBlur",
+    mode: "onChange",
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+    try {
+      const response = await register(data);
+      console.log(response);
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (
@@ -90,6 +99,7 @@ const Register = () => {
               onChange={onChange}
               error={!!error}
               type="email"
+              required
               helperText={error ? error.message : null}
             />
           )}
@@ -104,6 +114,7 @@ const Register = () => {
               value={value}
               onChange={onChange}
               error={!!error}
+              required
               helperText={error ? error.message : null}
             />
           )}
@@ -119,6 +130,7 @@ const Register = () => {
               type="password"
               onChange={onChange}
               error={!!error}
+              required
               helperText={error ? error.message : null}
             />
           )}
@@ -131,13 +143,15 @@ const Register = () => {
             <DTextField
               label={t("register.repeatPassword")}
               value={value}
+              type="password"
               onChange={onChange}
               error={!!error}
+              required
               helperText={error ? error.message : null}
             />
           )}
         />
-        <SubmitButton type="submit">{t("register.confirmButton")}</SubmitButton>
+        <SubmitButton disabled={!formState.isValid} type="submit">{t("register.confirmButton")}</SubmitButton>
       </Form>
     </Container>
   );

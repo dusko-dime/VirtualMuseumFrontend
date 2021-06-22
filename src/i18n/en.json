@@ -28,6 +28,7 @@
     "maxLength": "Maximal number of characters is {{length}}!",
     "confirmPasswordInvalid": "Confirm password is invalid!",
     "email": "Must be valid email address!",
-    "passwordPolicy": "Must be at least one uppercase, lowercase letter and number!"
+    "passwordPolicy": "Must be at least one uppercase, lowercase letter and number!",
+    "specialCharacters": "Can't contain @, # or /"
   }
 }

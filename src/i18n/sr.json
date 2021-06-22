@@ -28,6 +28,7 @@
     "maxLength": "Maksimalan broj karaktera je {{length}}!",
     "confirmPasswordInvalid": "Lozinka je nevalidna!",
     "email": "Email adresa nije validna!",
-    "passwordPolicy": "Lozinka mora da sadrži bar jedno veliko slovo, malo slovo i broj!"
+    "passwordPolicy": "Lozinka mora da sadrži bar jedno veliko slovo, malo slovo i broj!",
+    "specialCharacters": "Can't contain @, # or /"
   }
 }

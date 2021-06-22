@@ -11,6 +11,11 @@ const SubmitButton = styled(Button)`
     border: 1px solid green;
     color: green;
   }
+  
+  :disabled {
+    background-color: gray;
+    color: black;
+  }
 `;
 
 export default SubmitButton;
