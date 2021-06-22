@@ -1,53 +1,66 @@
 import React from "react";
-import {AppBar, Typography, IconButton, Button, Grid} from "@material-ui/core";
-import {Menu} from "@material-ui/icons";
+import {
+  AppBar,
+  Typography,
+  IconButton,
+  Button,
+  Grid,
+} from "@material-ui/core";
+import { Menu } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
 
-const Template = ({children}) => {
+const Template = ({ children }) => {
+  const { t } = useTranslation();
+  const history = useHistory();
 
-    const {t} = useTranslation();
-    const history = useHistory();
+  const openRegisterPage = () => {
+    history.push("/register");
+  };
 
-    const openRegisterPage = () => {
-        history.push("/register");
-    }
+  const openLoginPage = () => {
+    history.push("/login");
+  };
 
-    const openLoginPage = () => {
-        history.push("/login");
-    }
-
-    return (
-        <div>
-            <AppBar position="sticky">
-                {/*<Toolbar>*/}
-                    <Grid container>
-                        <Grid container xs={3} direction="row" alignItems="center">
-                            <IconButton edge="start" color="inherit" aria-label="menu">
-                                <Menu />
-                            </IconButton>
-                            <Typography variant="h6">
-                                {t("app.title")}
-                            </Typography>
-                        </Grid>
-                        <Grid container xs={9} direction="row" alignItems="center" justify="flex-end" spacing={2}>
-                            <Grid item>
-                                <RegisterButton onClick={openRegisterPage}>{t("header.register")}</RegisterButton>
-                            </Grid>
-                            <Grid item>
-                                <LoginButton onClick={openLoginPage}>{t("header.login")}</LoginButton>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                {/*</Toolbar>*/}
-            </AppBar>
-            {children}
-        </div>
-    )
-}
-
+  return (
+    <div>
+      <AppBar position="sticky">
+        {/*<Toolbar>*/}
+        <Grid container>
+          <Grid container xs={3} direction="row" alignItems="center">
+            <IconButton edge="start" color="inherit" aria-label="menu">
+              <Menu />
+            </IconButton>
+            <Typography variant="h6">{t("app.title")}</Typography>
+          </Grid>
+          <Grid
+            container
+            xs={9}
+            direction="row"
+            alignItems="center"
+            justify="flex-end"
+            spacing={2}
+          >
+            <Grid item>
+              <RegisterButton onClick={openRegisterPage}>
+                {t("header.register")}
+              </RegisterButton>
+            </Grid>
+            <Grid item>
+              <LoginButton onClick={openLoginPage}>
+                {t("header.login")}
+              </LoginButton>
+            </Grid>
+          </Grid>
+        </Grid>
+        {/*</Toolbar>*/}
+      </AppBar>
+      {children}
+    </div>
+  );
+};
 
 const LoginButton = styled(Button)`
   background-color: #fff;
@@ -68,7 +81,7 @@ const RegisterButton = styled(Button)`
 `;
 
 Template.propTypes = {
-    children: PropTypes.element
-}
+  children: PropTypes.element,
+};
 
 export default Template;
