@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { Button } from "@material-ui/core";
 
-const SubmitButton = styled(Button)`
-  background-color: green;
+const BasicButton = styled(Button)`
+  background-color: ${({ theme }) => theme.palette.primary.light};
   margin-top: 10px;
   color: #fff;
   height: 40px;
@@ -18,4 +18,4 @@ const SubmitButton = styled(Button)`
   }
 `;
 
-export default SubmitButton;
+export default BasicButton;

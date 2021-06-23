@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useApplicationStateValue } from "./ApplicationContext";
+import JwtDecode from "jwt-decode";
+import moment from "moment";
 
 const defaultState = {
   isLoggedIn: null,
@@ -15,7 +17,7 @@ const defaultActions = {
   setLoggedIn: () => {},
   setAccessToken: () => {},
   setRefreshToken: () => {},
-  setLoggedUser: () => {}
+  setLoggedUser: () => {},
 };
 
 export const AuthContext = React.createContext({
@@ -32,19 +34,36 @@ const AuthProvider = (props) => {
   const [loggedUser, setLoggedUser] = useState({
     firstName: null,
     lastName: null,
-    usergroup: null,
     username: null,
     id: null,
   });
   const { setLoading } = useApplicationStateValue();
 
-  const login = async ({ username, password }) => {
-    // TODO Login
-  };
-
-  const logout = async () => {
-    // TODO Logout
-  };
+  useEffect(() => {
+    const accessToken = sessionStorage.getItem("accessToken");
+    setLoading(true);
+    if (accessToken) {
+      const decodedData = JwtDecode(accessToken);
+      if (moment(decodedData.exp).isBefore(new Date())) {
+        setLoggedIn(false);
+        setLoggedUser(null);
+      } else {
+        setLoggedIn(true);
+        setLoggedUser({
+          firstName: decodedData.first_name,
+          lastName: decodedData.last_name,
+          username: decodedData.username,
+          id: decodedData.id,
+        });
+      }
+      setLoading(false);
+    } else {
+      //window.location.href = "/login";
+      setLoggedIn(false);
+      setLoggedUser(null);
+      setLoading(false);
+    }
+  }, []);
 
   const state = {
     isLoggedIn,

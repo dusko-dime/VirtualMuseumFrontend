@@ -9,7 +9,7 @@ import { object, string, ref } from "yup";
 import * as yup from "yup";
 // eslint-disable-next-line no-undef
 require("yup-password")(yup);
-import {register} from "../service/auth.service";
+import { register } from "../service/auth.service";
 
 const Register = () => {
   const { t } = useTranslation();
@@ -20,16 +20,15 @@ const Register = () => {
     username: string()
       .required(t("validation.required", { fieldName: t("register.username") }))
       .max(50, t("validation.maxLength", { length: 50 }))
-      .min(12, t("validation.minLength", { length: 12 })).matches(/^[^(@|#|//)]*$/, t("validation.specialCharacters")),
+      .min(12, t("validation.minLength", { length: 12 }))
+      .matches(/^[^(@|#|//)]*$/, t("validation.specialCharacters")),
     email: string()
       .required(t("validation.required", { fieldName: t("register.email") }))
       .max(50, t("validation.maxLength", { length: 50 }))
       .email(t("validation.email")),
     password: string()
-      .required(
-          t("validation.required", { fieldName: t("register.password") })
-      )
-      .min(15, t("validation.minLength", {length: 15}))
+      .required(t("validation.required", { fieldName: t("register.password") }))
+      .min(15, t("validation.minLength", { length: 15 }))
       .minLowercase(1, t("validation.passwordPolicy"))
       .minUppercase(1, t("validation.passwordPolicy"))
       .minNumbers(1, t("validation.passwordPolicy")),
@@ -47,10 +46,8 @@ const Register = () => {
   });
 
   const onSubmit = async (data) => {
-    console.log(data);
     try {
-      const response = await register(data);
-      console.log(response);
+      await register(data);
     } catch (e) {
       console.error(e);
     }
@@ -151,7 +148,9 @@ const Register = () => {
             />
           )}
         />
-        <SubmitButton disabled={!formState.isValid} type="submit">{t("register.confirmButton")}</SubmitButton>
+        <SubmitButton disabled={!formState.isValid} type="submit">
+          {t("register.confirmButton")}
+        </SubmitButton>
       </Form>
     </Container>
   );

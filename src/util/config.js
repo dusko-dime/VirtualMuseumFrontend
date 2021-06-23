@@ -1,3 +1,3 @@
 export default {
-    BASE_ENDPOINT_URL: "http://localhost:8080",
-}
+  BASE_ENDPOINT_URL: "http://localhost:8080",
+};

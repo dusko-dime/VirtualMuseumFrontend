@@ -30,5 +30,15 @@
     "email": "Email adresa nije validna!",
     "passwordPolicy": "Lozinka mora da sadrži bar jedno veliko slovo, malo slovo i broj!",
     "specialCharacters": "Can't contain @, # or /"
+  },
+  "homeGuest": {
+    "description": "Posjeti najpoznatije muzeje!",
+    "title": "Virtuelni muzej",
+    "loginTitleMessage": "Imate nalog?",
+    "loginDescriptionMessage": "Prijavite se i počnite rezervisati događaje!",
+    "registerTitleMessage": "Nemate nalog?",
+    "registerDescriptionMessage": " Napravite nalog i počnite rezervisati događaje!",
+    "loginButton": "Prijavi se",
+    "registerButton": "Registruj se"
   }
 }

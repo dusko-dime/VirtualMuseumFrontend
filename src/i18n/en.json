@@ -30,5 +30,15 @@
     "email": "Must be valid email address!",
     "passwordPolicy": "Must be at least one uppercase, lowercase letter and number!",
     "specialCharacters": "Can't contain @, # or /"
+  },
+  "homeGuest": {
+    "description": "Visit most famous museums!",
+    "title": "Virtual museum",
+    "loginTitleMessage": "Have an account?",
+    "loginDescriptionMessage": "Log in and start booking your events!",
+    "registerTitleMessage": "Don't have an account?",
+    "registerDescriptionMessage": " Get one and start booking your events!",
+    "loginButton": "Login",
+    "registerButton": "Register"
   }
 }

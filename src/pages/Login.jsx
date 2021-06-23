@@ -6,14 +6,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import styled from "styled-components";
 import DTextField from "../components/TextField/DTextField";
 import SubmitButton from "../components/SubmitButton/SubmitButton";
-import {login} from "../service/auth.service";
-import {useAuthStateValue} from "../context/AuthContext";
-import {useApplicationStateValue} from "../context/ApplicationContext";
+import { login } from "../service/auth.service";
+import { useAuthStateValue } from "../context/AuthContext";
+import { useApplicationStateValue } from "../context/ApplicationContext";
 
 const Login = () => {
   const { t } = useTranslation();
-  const {setAccessToken, setRefreshToken, setLoggedUser, setLoggedIn} = useAuthStateValue();
-  const {setLoading} = useApplicationStateValue();
+  const { setAccessToken, setRefreshToken, setLoggedUser, setLoggedIn } =
+    useAuthStateValue();
+  const { setLoading } = useApplicationStateValue();
 
   const validationSchema = object().shape({
     username: string()
