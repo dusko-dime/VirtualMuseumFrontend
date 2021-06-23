@@ -12,8 +12,6 @@ const defaultState = {
 };
 
 const defaultActions = {
-  login: () => {},
-  logout: () => {},
   setLoggedIn: () => {},
   setAccessToken: () => {},
   setRefreshToken: () => {},
@@ -73,9 +71,7 @@ const AuthProvider = (props) => {
     setLoggedIn,
     setAccessToken,
     setRefreshToken,
-    setLoggedUser,
-    login,
-    logout,
+    setLoggedUser
   };
 
   return (
