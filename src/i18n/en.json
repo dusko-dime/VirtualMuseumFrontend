@@ -4,7 +4,8 @@
   },
   "header": {
     "login": "Login",
-    "register": "Register"
+    "register": "Register",
+    "logout": "Logout"
   },
   "register": {
     "headerTitle": "Register",

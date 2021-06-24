@@ -4,7 +4,8 @@
   },
   "header": {
     "login": "Prijavi se",
-    "register": "Registruj se"
+    "register": "Registruj se",
+    "logout": "Odjavi se"
   },
   "register": {
     "headerTitle": "Registracija",

@@ -11,18 +11,25 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { useTranslation } from "react-i18next";
 import { useHistory } from "react-router-dom";
+import {useAuthStateValue} from "./context/AuthContext";
 
 const Template = ({ children }) => {
   const { t } = useTranslation();
   const history = useHistory();
+  const {logout} = useAuthStateValue();
 
-  const openRegisterPage = () => {
-    history.push("/register");
-  };
+  // const openRegisterPage = () => {
+  //   history.push("/register");
+  // };
+  //
+  // const openLoginPage = () => {
+  //   history.push("/login");
+  // };
 
-  const openLoginPage = () => {
-    history.push("/login");
-  };
+  const logoutHandler = () => {
+    logout();
+    history.push("/");
+  }
 
   return (
     <div>
@@ -44,15 +51,20 @@ const Template = ({ children }) => {
             spacing={2}
           >
             <Grid item>
-              <RegisterButton onClick={openRegisterPage}>
-                {t("header.register")}
-              </RegisterButton>
+              <LogoutButton onClick={logoutHandler}>
+                {t("header.logout")}
+              </LogoutButton>
             </Grid>
-            <Grid item>
-              <LoginButton onClick={openLoginPage}>
-                {t("header.login")}
-              </LoginButton>
-            </Grid>
+            {/*<Grid item>*/}
+            {/*  <RegisterButton onClick={openRegisterPage}>*/}
+            {/*    {t("header.register")}*/}
+            {/*  </RegisterButton>*/}
+            {/*</Grid>*/}
+            {/*<Grid item>*/}
+            {/*  <LoginButton onClick={openLoginPage}>*/}
+            {/*    {t("header.login")}*/}
+            {/*  </LoginButton>*/}
+            {/*</Grid>*/}
           </Grid>
         </Grid>
         {/*</Toolbar>*/}
@@ -62,16 +74,25 @@ const Template = ({ children }) => {
   );
 };
 
-const LoginButton = styled(Button)`
-  background-color: #fff;
-  color: #000;
-  :hover {
-    background-color: #226a3a;
-    color: #fff;
-  }
-`;
+// const LoginButton = styled(Button)`
+//   background-color: #fff;
+//   color: #000;
+//   :hover {
+//     background-color: #226a3a;
+//     color: #fff;
+//   }
+// `;
+//
+// const RegisterButton = styled(Button)`
+//   background-color: #fff;
+//   color: #000;
+//   :hover {
+//     background-color: gray;
+//     color: #fff;
+//   }
+// `;
 
-const RegisterButton = styled(Button)`
+const LogoutButton = styled(Button)`
   background-color: #fff;
   color: #000;
   :hover {

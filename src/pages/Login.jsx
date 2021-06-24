@@ -9,12 +9,14 @@ import SubmitButton from "../components/SubmitButton/SubmitButton";
 import { login } from "../service/auth.service";
 import { useAuthStateValue } from "../context/AuthContext";
 import { useApplicationStateValue } from "../context/ApplicationContext";
+import {useHistory} from "react-router";
 
 const Login = () => {
   const { t } = useTranslation();
   const { setAccessToken, setRefreshToken, setLoggedUser, setLoggedIn } =
     useAuthStateValue();
   const { setLoading } = useApplicationStateValue();
+  const history = useHistory();
 
   const validationSchema = object().shape({
     username: string()
@@ -46,6 +48,7 @@ const Login = () => {
         localStorage.setItem("refreshToken", refreshToken);
         setTimeout(() => {
           setLoading(false);
+          history.push("/home")
         }, 100);
       }
       console.log(response);

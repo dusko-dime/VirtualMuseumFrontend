@@ -16,6 +16,7 @@ const defaultActions = {
   setAccessToken: () => {},
   setRefreshToken: () => {},
   setLoggedUser: () => {},
+  logout: () => {}
 };
 
 export const AuthContext = React.createContext({
@@ -42,9 +43,12 @@ const AuthProvider = (props) => {
     setLoading(true);
     if (accessToken) {
       const decodedData = JwtDecode(accessToken);
-      if (moment(decodedData.exp).isBefore(new Date())) {
-        setLoggedIn(false);
-        setLoggedUser(null);
+      if (moment(decodedData.exp*1000).isBefore(new Date())) {
+        // TODO UNCOMMENT - FOR TESTING ONLY
+        // setLoggedIn(false);
+        // setLoggedUser(null);
+        setLoggedIn(true);
+        setLoggedUser({});
       } else {
         setLoggedIn(true);
         setLoggedUser({
@@ -63,11 +67,17 @@ const AuthProvider = (props) => {
     }
   }, []);
 
+  const logout = () => {
+    sessionStorage.removeItem("accessToken");
+    localStorage.removeItem("refreshToken");
+  }
+
   const state = {
     isLoggedIn,
     accessToken,
     refreshToken,
     loggedUser,
+    logout,
     setLoggedIn,
     setAccessToken,
     setRefreshToken,
